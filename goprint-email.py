@@ -5,6 +5,7 @@
 ## (also as root) pip install psycopg2
 import psycopg2
 import sys
+import os
 
 # imports for actually sending the email
 import smtplib
@@ -17,7 +18,7 @@ from datetime import date, timedelta
 DATABASE = '127.0.0.1'
 DB_NAME = 'goprint'
 USER = 'goprint_email'
-PASSWORD = 'PASSWORD_HERE'
+PASSWORD = os.environ['GOPRINTPASS']
 
 # List of lists of users that were contacted
 # each follows the form ([Current Balance, Account ID, First Name, Last Name])
