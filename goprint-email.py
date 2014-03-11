@@ -18,7 +18,11 @@ from datetime import date, timedelta
 DATABASE = '127.0.0.1'
 DB_NAME = 'goprint'
 USER = 'goprint_email'
-PASSWORD = os.environ['GOPRINTPASS']
+try:
+    PASSWORD = os.environ['GOPRINTPASS']
+except KeyError:
+    print("Environmental variable GOPRINTPASS not found")
+    sys.exit(1)
 
 # List of lists of users that were contacted
 # each follows the form ([Current Balance, Account ID, First Name, Last Name])
