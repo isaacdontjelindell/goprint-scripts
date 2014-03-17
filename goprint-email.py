@@ -41,7 +41,7 @@ def main():
       LAST_CONTACTED = str(date.today() - ONE_DAY)
    if txtfile != 0:
       LAST_CONTACTED = str(txtfile.readline())
-      print "Last contacted on " + LAST_CONTACTED
+      print("Last contacted on " + LAST_CONTACTED)
 
 
    # Define our connection string
@@ -262,9 +262,9 @@ def send_email(email, last_name, first_name, current_balance, money_amount):
 # As definition implies, this sends a report to the HD Managers at the end of each day
 def send_report(users):
    if len(users) == 1:
-      print "Sending report of one user contacted today"
+      print("Sending report of one user contacted today")
    else:
-      print "Sending report of " + str(len(users)) + " users contacted today"
+      print("Sending report of " + str(len(users)) + " users contacted today")
    sender = "goprint@luther.edu"
    receiver = "markga01@luther.edu" #"hdmanagers@luther.edu"
 
