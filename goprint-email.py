@@ -48,7 +48,7 @@ def main():
    conn_string = "host='%s' dbname='%s' user='%s' password='%s'" % (DATABASE, DB_NAME, USER, PASSWORD)
 
    # print the connection string we will use to connect
-   print "Connecting to database\n   ->%s" % (conn_string)
+   print("Connecting to %s on %s" % (DB_NAME, DATABASE))
 
    # get a connection, if a connect cannot be made an exception will be raised here
    try:
