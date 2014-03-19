@@ -253,7 +253,7 @@ def send_email(email, last_name, first_name, current_balance, money_amount):
    msg['To'] = "markga01@luther.edu, carsten@luther.edu, gossmand@luther.edu" #receiver
 
    # Setting up smtp with mail server. When left blank it defaults to localhost.
-   s = smtplib.SMTP('smtp.luther.edu',25)
+   s = smtplib.SMTP()
    s.connect()
    s.sendmail(sender, ["markga01@luther.edu","carsten@luther.edu", "gossmand@luther.edu"], msg.as_string())
    s.quit()
