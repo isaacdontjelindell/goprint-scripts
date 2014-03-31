@@ -250,12 +250,12 @@ def send_email(email, last_name, first_name, current_balance, money_amount):
    else:
       msg['Subject'] = "GoPrint Balance Alert: Balance at $%s" % (money_amount)
    msg['From'] = sender
-   msg['To'] = "markga01@luther.edu, carsten@luther.edu, gossmand@luther.edu" #receiver
+   msg['To'] = receiver
 
    # Setting up smtp with mail server. When left blank it defaults to localhost.
    s = smtplib.SMTP()
    s.connect()
-   s.sendmail(sender, ["markga01@luther.edu","carsten@luther.edu", "gossmand@luther.edu"], msg.as_string())
+   s.sendmail(sender, [receiver], msg.as_string())
    s.quit()
 
 
@@ -266,7 +266,7 @@ def send_report(users):
    else:
       print("Sending report of " + str(len(users)) + " users contacted today")
    sender = "goprint@luther.edu"
-   receiver = "markga01@luther.edu" #"hdmanagers@luther.edu"
+   receiver = "hdmanagers@luther.edu"
 
    users = sorted(users, key=lambda user: user[1])
 
@@ -280,12 +280,12 @@ def send_report(users):
 
    msg['Subject'] = "GoPrint Student Balance Report"
    msg['From'] = sender
-   msg['To'] = receiver + ", carsten@luther.edu, gossmand@luther.edu"
+   msg['To'] = receiver + ", gossmand@luther.edu"
 
    # Setting up smtp with mail server. When left blank it defaults to localhost.
    s = smtplib.SMTP()
    s.connect()
-   s.sendmail(sender, [receiver, "carsten@luther.edu", "gossmand@luther.edu"], msg.as_string())
+   s.sendmail(sender, [receiver, "gossmand@luther.edu"], msg.as_string())
    s.quit()
 
 
