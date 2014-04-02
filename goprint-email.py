@@ -69,8 +69,7 @@ def main():
 
    parse_through_current_table(rows)
 
-   if len(USERS_CONTACTED) != 0:
-      send_report(USERS_CONTACTED)
+   send_report(USERS_CONTACTED)
 
    txtfile = open("lastran.txt", "w")
    txtfile.seek(0)
@@ -261,24 +260,34 @@ def send_email(email, last_name, first_name, current_balance, money_amount):
 
 # As definition implies, this sends a report to the HD Managers at the end of each day
 def send_report(users):
-   if len(users) == 1:
+   if len(users) == 0:
+      print("Sending empty report")
+   elif len(users) == 1:
       print("Sending report of one user contacted today")
    else:
       print("Sending report of " + str(len(users)) + " users contacted today")
    sender = "goprint@luther.edu"
    receiver = "hdmanagers@luther.edu"
 
-   users = sorted(users, key=lambda user: user[1])
+   message = ""
+   if len(users) > 0:
+      users = sorted(users, key=lambda user: user[1])
 
-   # Create the string for the report email body.
-   message = "These are all the students who were contacted and their current balances.\n"
-   for user in users:
-      message = message + "\n" + "$" + user[0] + (" " * (10 - len(user[0]))) + user[1] + (" " * (15 - len(user[1]))) + user[2] + " " + user[3]
+      # Create the string for the report email body.
+      message = "These are all the students who were contacted and their current balances.\n"
+      for user in users:
+         message = message + "\n" + "$" + user[0] + (" " * (10 - len(user[0]))) + user[1] + (" " * (15 - len(user[1]))) + user[2] + " " + user[3]
 
+   else:
+      message = "There were no students that crossed any of the thresholds today."
+      
    # Create a text/plain message.
    msg = MIMEText(message)
 
-   msg['Subject'] = "GoPrint Student Balance Report"
+   if len(users) > 0:
+      msg['Subject'] = "GoPrint Student Balance Report"
+   else:
+      msg['Subject'] = "GoPrint Student Balance Report - EMPTY"
    msg['From'] = sender
    msg['To'] = receiver + ", gossmand@luther.edu"
 
