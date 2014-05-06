@@ -36,7 +36,7 @@ ONE_DAY = timedelta(days=1)
 def main():
    txtfile = 0
    try:
-      txtfile = open("lastran.txt", "r")
+      txtfile = open("/root/luther/code/goprint-scripts/lastran.txt", "r")
    except IOError:
       LAST_CONTACTED = str(date.today() - ONE_DAY)
    if txtfile != 0:
