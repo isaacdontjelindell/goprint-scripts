@@ -71,7 +71,7 @@ def main():
 
    send_report(USERS_CONTACTED)
 
-   txtfile = open("lastran.txt", "w")
+   txtfile = open("/root/luther/code/goprint-scripts/lastran.txt", "w")
    txtfile.seek(0)
    txtfile.write(str(date.today()))
    txtfile.truncate()
